@@ -17,3 +17,5 @@ export const selectCategoriesMap = createSelector(
       return acc;
     }, {})
 );
+
+console.log('HELLO');
