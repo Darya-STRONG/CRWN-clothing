@@ -2,6 +2,7 @@ import { compose, applyMiddleware } from 'redux';
 import { legacy_createStore as createStore} from 'redux';
 import logger from 'redux-logger';
 import storage from 'redux-persist/lib/storage';
+import thunk from 'redux-thunk';
 
 import { persistStore, persistReducer } from 'redux-persist';
 
@@ -15,7 +16,7 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const middleWares = [process.env.NODE_ENV !== 'production' && logger].filter(Boolean);
+const middleWares = [process.env.NODE_ENV !== 'production' && logger, thunk].filter(Boolean);
 
 const composeEnhancer = (process.env.NODE_ENV !== 'production' && window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
